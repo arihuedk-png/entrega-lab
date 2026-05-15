@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estiloproyecto1.css">
+    <script src="prueba.js"></script>
+    <title>sistema</title>
+</head>
+<body>
+    <div class="CONTENEDOR1" style="margin-left: 350px;">
+    <h1>Afiliacion de cliente</h1>
+    <br>
+    <p>Nombre <input type="text" id="nombre" placeholder="Inserte nombre y apellido"></p>
+    <p>Edad <input type="number" id="edad" placeholder="Inserte su edad"></p>
+    <p>DNI <input type="number" id="DNI" placeholder="Inserte su documento de identidad nacional"></p>
+    <p>Email <input type="email" id="email" placeholder="Inserte su email"></p>
+    <p>Numero <input type="number" id="numero" placeholder="inserte su numero telefonico"></p>
+    <p>Fecha de nacimiento <input type="date" name="fecha" placeholder="Inserte su fecha de nacimiento"></p>
+<br>
+<button onclick="afiliar ()">AFILIAR</button>
+<p id="resultado3"></p>
+</div>
+<div class="CONTENEDOR1">
+<h1>BUSQUEDA AUTOS CLASICOS</h1>
+<br>
+<p>Marca:<select id="marca">
+    <option value="1">FERRARI</option>
+    <option value="2">PAGANI</option>
+    <option value="3">LAMBORGHINI</option>
+    <option value="4">VENTO TUNEADO</option>
+    </select>
+</p>
+    <p>Modelo:<select id="tipo">
+        <option value="1">SEDAN</option>
+        <option value="2">DEPORTIVO</option>
+        <OPTIOn value="3">HANGEO</OPTIOn>
+        <option value="4">CAMIONETA</option>
+        </SELECt>
+        <br>
+        <p><textarea name="Comentarios" placeholder="Algo en especial?"></textarea></p>
+        <button onclick="buscar()">BUSCAR</button>
+        <br>
+        <p id="resultado4"></p>
+        </div>
+</body>
+</html>
