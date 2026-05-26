@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instituto Médico Victoria</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #102033;
+      background: #f4f8fc;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      padding: 14px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5, 24, 46, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      transition: 0.3s;
+    }
+
+    header.scrolled {
+      padding: 9px 8%;
+      background: rgba(3, 18, 34, 0.97);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .marca img {
+      height: 54px;
+      width: auto;
+      display: block;
+    }
+
+    .marca-texto span {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: #9fd3ff;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 24px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #72c7ff;
+    }
+
+    .hero {
+      min-height: 92vh;
+      padding: 150px 8% 70px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(4, 24, 46, 0.92), rgba(4, 24, 46, 0.62), rgba(4, 24, 46, 0.18)),
+        url("fachada-victoria.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero-contenido {
+      max-width: 720px;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 14px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      color: #bfe4ff;
+      background: rgba(255,255,255,0.08);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 58px;
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      line-height: 1.7;
+      margin-bottom: 34px;
+      color: #e6f3ff;
+    }
+
+    .acciones {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: 0.2s;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .btn-principal {
+      background: #1d9bf0;
+      color: white;
+      box-shadow: 0 14px 30px rgba(29, 155, 240, 0.32);
+    }
+
+    .btn-principal:hover {
+      background: #0b86d8;
+      transform: translateY(-2px);
+    }
+
+    .btn-secundario {
+      background: white;
+      color: #07345d;
+    }
+
+    .btn-secundario:hover {
+      background: #dff2ff;
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: white;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1eb85a;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 78px 8%;
+    }
+
+    .titulo {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .titulo h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+      color: #071f39;
+    }
+
+    .titulo p {
+      font-size: 18px;
+      color: #52677d;
+      line-height: 1.6;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #dce8f4;
+      border-radius: 8px;
+      padding: 26px;
+      box-shadow: 0 14px 35px rgba(13, 45, 76, 0.08);
+    }
+
+    .card h3 {
+      color: #0b5f9f;
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: #52677d;
+      line-height: 1.6;
+    }
+
+    .bloque-imagen {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+      background: #071f39;
+      color: white;
+    }
+
+    .bloque-imagen img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.28);
+      display: block;
+    }
+
+    .bloque-imagen h2 {
+      font-size: 40px;
+      margin-bottom: 18px;
+    }
+
+    .bloque-imagen p {
+      color: #d8ebff;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .datos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .dato {
+      padding: 20px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .dato strong {
+      display: block;
+      font-size: 24px;
+      color: #72c7ff;
+      margin-bottom: 6px;
+    }
+
+    .turnos {
+      background: #eaf4ff;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      border: 1px solid #dce8f4;
+      box-shadow: 0 14px 35px rgba(13, 45, 76, 0.08);
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .campo.completo {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 700;
+      color: #07345d;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 13px;
+      border: 1px solid #c9d8e8;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #1d9bf0;
+      box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.14);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .mensaje-formulario {
+      grid-column: 1 / -1;
+      display: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .mensaje-formulario.ok {
+      display: block;
+      background: #d9fbe7;
+      color: #116336;
+      border: 1px solid #9ee6b8;
+    }
+
+    .mensaje-formulario.error {
+      display: block;
+      background: #ffe1e1;
+      color: #8a1f1f;
+      border: 1px solid #f2abab;
+    }
+
+    .contacto {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 24px;
+    }
+
+    .panel-contacto {
+      background: #0a3761;
+      color: white;
+      padding: 32px;
+      border-radius: 8px;
+    }
+
+    .panel-contacto h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .panel-contacto p {
+      margin-bottom: 13px;
+      color: #dceeff;
+    }
+
+    iframe {
+      width: 100%;
+      height: 340px;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    footer {
+      padding: 26px 8%;
+      background: #04182e;
+      color: #c9def2;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      header {
+        position: static;
+        display: block;
+      }
+
+      .marca {
+        margin-bottom: 12px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 8px 14px 0 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 80px 8%;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .bloque-imagen,
+      .contacto,
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .bloque-imagen h2,
+      .titulo h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="marca">
+      <img src="logo-victoria.jpg" alt="Logo Instituto Médico Victoria">
+      <div class="marca-texto">
+        Instituto Médico Victoria
+        <span>CÓRDOBA</span>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#especialidades">Especialidades</a>
+      <a href="#instituto">Instituto</a>
+      <a href="#turnos">Turnos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-contenido">
+        <span class="etiqueta">Centro médico en Córdoba</span>
+        <h1>Atención médica integral con calidad profesional</h1>
+        <p>
+          En Instituto Médico Victoria brindamos atención en distintas especialidades,
+          con espacios modernos, cómodos y pensados para acompañar la salud de cada paciente.
+        </p>
+
+        <div class="acciones">
+          <a class="btn btn-principal" href="#turnos">Solicitar turno</a>
+          <a class="btn btn-secundario" href="#especialidades">Ver especialidades</a>
+          <a class="btn btn-whatsapp" href="https://wa.me/543517654069" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="especialidades">
+      <div class="titulo">
+        <h2>Especialidades médicas</h2>
+        <p>
+          Un equipo preparado para brindar atención cercana, responsable y orientada
+          al bienestar de cada persona.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Clínica médica</h3>
+          <p>Controles de salud, atención general y seguimiento médico personalizado.</p>
+        </div>
+
+        <div class="card">
+          <h3>Cardiología</h3>
+          <p>Evaluación, prevención y seguimiento de la salud cardiovascular.</p>
+        </div>
+
+        <div class="card">
+          <h3>Diagnóstico por imágenes</h3>
+          <p>Estudios médicos para acompañar diagnósticos y tratamientos.</p>
+        </div>
+
+        <div class="card">
+          <h3>Pediatría</h3>
+          <p>Atención para niños y adolescentes en un entorno cómodo y cuidado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="instituto" class="bloque-imagen">
+      <img src="interior-victoria.jpg" alt="Interior del Instituto Médico Victoria">
+
+      <div>
+        <h2>Un espacio moderno para cuidar tu salud</h2>
+        <p>
+          Instalaciones amplias, luminosas y organizadas para que cada paciente
+          pueda recibir atención médica en un ambiente cómodo, tranquilo y profesional.
+        </p>
+
+        <div class="datos">
+          <div class="dato">
+            <strong>4301</strong>
+            Av. Valparaíso, Córdoba
+          </div>
+          <div class="dato">
+            <strong>8 a 20 h</strong>
+            Atención de lunes a viernes
+          </div>
+          <div class="dato">
+            <strong>3517654069</strong>
+            Teléfono de contacto
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="turnos" class="turnos">
+      <div class="titulo">
+        <h2>Solicitar turno</h2>
+        <p>
+          Completá tus datos y elegí la especialidad. El formulario prepara una consulta
+          para enviar por WhatsApp al instituto.
+        </p>
+      </div>
+
+      <form id="formTurno">
+        <div class="campo">
+          <label for="nombre">Nombre y apellido</label>
+          <input type="text" id="nombre" placeholder="Ej: Juan Pérez">
+        </div>
+
+        <div class="campo">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" placeholder="Ej: 3511234567">
+        </div>
+
+        <div class="campo">
+          <label for="especialidad">Especialidad</label>
+          <select id="especialidad">
+            <option value="">Seleccionar especialidad</option>
+            <option value="Clínica médica">Clínica médica</option>
+            <option value="Cardiología">Cardiología</option>
+            <option value="Diagnóstico por imágenes">Diagnóstico por imágenes</option>
+            <option value="Pediatría">Pediatría</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="fecha">Fecha preferida</label>
+          <input type="date" id="fecha">
+        </div>
+
+        <div class="campo completo">
+          <label for="mensaje">Comentario adicional</label>
+          <textarea id="mensaje" placeholder="Ej: Prefiero turno por la mañana."></textarea>
+        </div>
+
+        <div id="mensajeFormulario" class="mensaje-formulario"></div>
+
+        <button class="btn btn-principal" type="submit">Enviar solicitud por WhatsApp</button>
+        <button class="btn btn-secundario" type="button" id="limpiarFormulario">Limpiar formulario</button>
+      </form>
+    </section>
+
+    <section id="contacto">
+      <div class="titulo">
+        <h2>Contacto y ubicación</h2>
+        <p>
+          Encontranos en Córdoba Capital. Podés acercarte o consultar por turnos
+          y disponibilidad de atención.
+        </p>
+      </div>
+
+      <div class="contacto">
+        <div class="panel-contacto">
+          <h3>Instituto Médico Victoria</h3>
+          <p><strong>Dirección:</strong> Av. Valparaíso 4301, Córdoba</p>
+          <p><strong>Horario:</strong> Lunes a viernes de 8:00 a 20:00</p>
+          <p><strong>Teléfono:</strong> 3517654069</p>
+
+          <br>
+
+          <a class="btn btn-secundario" href="tel:3517654069">Llamar ahora</a>
+          <a class="btn btn-whatsapp" href="https://wa.me/543517654069" target="_blank">Enviar WhatsApp</a>
+
+          <br><br>
+
+          <a
+            class="btn btn-secundario"
+            href="https://www.google.com/maps/search/?api=1&query=Av.+Valparaiso+4301+Cordoba"
+            target="_blank">
+            Ver en Google Maps
+          </a>
+        </div>
+
+        <iframe
+          src="https://www.google.com/maps?q=Av.%20Valparaiso%204301%20Cordoba&output=embed"
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Instituto Médico Victoria - Córdoba</p>
+  </footer>
+
+  <script>
+    const header = document.getElementById("header");
+    const formTurno = document.getElementById("formTurno");
+    const mensajeFormulario = document.getElementById("mensajeFormulario");
+    const limpiarFormulario = document.getElementById("limpiarFormulario");
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    formTurno.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const telefono = document.getElementById("telefono").value.trim();
+      const especialidad = document.getElementById("especialidad").value;
+      const fecha = document.getElementById("fecha").value;
+      const mensaje = document.getElementById("mensaje").value.trim();
+
+      if (nombre === "" || telefono === "" || especialidad === "" || fecha === "") {
+        mostrarMensaje("Por favor completá nombre, teléfono, especialidad y fecha preferida.", "error");
+        return;
+      }
+
+      if (telefono.length < 8) {
+        mostrarMensaje("Ingresá un teléfono válido.", "error");
+        return;
+      }
+
+      const textoWhatsApp =
+        "Hola, quiero solicitar un turno en Instituto Médico Victoria.%0A%0A" +
+        "Nombre: " + encodeURIComponent(nombre) + "%0A" +
+        "Teléfono: " + encodeURIComponent(telefono) + "%0A" +
+        "Especialidad: " + encodeURIComponent(especialidad) + "%0A" +
+        "Fecha preferida: " + encodeURIComponent(fecha) + "%0A" +
+        "Comentario: " + encodeURIComponent(mensaje || "Sin comentario adicional");
+
+      mostrarMensaje("Solicitud preparada. Se abrirá WhatsApp para enviar el mensaje.", "ok");
+
+      setTimeout(function () {
+        window.open("https://wa.me/543517654069?text=" + textoWhatsApp, "_blank");
+      }, 700);
+    });
+
+    limpiarFormulario.addEventListener("click", function () {
+      formTurno.reset();
+      mensajeFormulario.className = "mensaje-formulario";
+      mensajeFormulario.textContent = "";
+    });
+
+    function mostrarMensaje(texto, tipo) {
+      mensajeFormulario.textContent = texto;
+      mensajeFormulario.className = "mensaje-formulario " + tipo;
+    }
+  </script>
+</body>
+</html>
